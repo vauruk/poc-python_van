@@ -1,0 +1,12 @@
+<a href="/polls/">Back</a>
+<h2>Pergunta:</h2>
+
+{% comment %} <b>Questão: {{question.id}}</b>
+<p>{{question.question_text}}</p>
+{% endcomment %}
+<h1>{{ question.question_text }}</h1>
+<ul>
+  {% for choice in question.choice_set.all %}
+  <li>{{ choice.id }} - {{ choice.choice_text }}</li>
+  {% endfor %}
+</ul>

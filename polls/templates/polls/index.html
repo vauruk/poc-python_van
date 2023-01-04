@@ -1,9 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% block title %}<title>Vanderson Python</title>{% endblock %}
+  <style>
+    .body {
+        background-color: '#ffee22';
+    }
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 40%;
+    }
+    
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+    </style>
+</head>
+<body>
 {% if latest_question_list %}
-    <ul>
-    {% for question in latest_question_list %}
-        <li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No polls are available.</p>
-{% endif %}
+    <h3>Perguntas:</h3>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Questão</th>
+            <th>Data</th>
+            <th>#</th>
+        </tr>
+        {% for question in latest_question_list %}
+        <tr>
+            <td>{{ question.id }}</td>
+            <td><a href="{% url 'detail' question.id %}">{{ question.question_text }}</a></td>
+            <td>{{ question.pub_date }}</td>
+            <td>Delete</td>
+        </tr>
+    {% endfor %}   
+    </table>
+    <ul>    
+    {% else %}
+        <p>No polls are available.</p>
+    {% endif %}
+</body>
+</html>
